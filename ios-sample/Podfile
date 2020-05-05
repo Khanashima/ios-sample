@@ -7,6 +7,7 @@ target 'ios-sample' do
 
   # Pods for ios-sample
   pod 'Firebase/Analytics'
+  pod 'Firebase/Crashlytics'
 
 
   target 'ios-sampleTests' do
