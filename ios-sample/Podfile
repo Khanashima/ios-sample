@@ -8,15 +8,17 @@ target 'ios-sample' do
   # Pods for ios-sample
   pod 'Firebase/Analytics'
   pod 'Firebase/Crashlytics'
-
+  pod 'RealmSwift'
 
   target 'ios-sampleTests' do
     inherit! :search_paths
     # Pods for testing
+    pod 'RealmSwift'
   end
 
   target 'ios-sampleUITests' do
     # Pods for testing
+    pod 'RealmSwift'
   end
 
 end

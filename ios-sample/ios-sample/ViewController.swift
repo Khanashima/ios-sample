@@ -7,12 +7,32 @@
 //
 
 import UIKit
+import RealmSwift
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        let myDog = Dog()
+        myDog.name = "Fido"
+        
+        let config = Realm.Configuration(
+          schemaVersion: 1,
+          migrationBlock: { migration, oldSchemaVersion in
+            if (oldSchemaVersion < 1) {
+            }
+          })
+        Realm.Configuration.defaultConfiguration = config
+        let realm = try! Realm()
+        /*
+        try! realm.write {
+          realm.add(myDog)
+        }
+        */
+        let dogs = realm.objects(Dog.self)
+        debugPrint(dogs[0].name)
+        
     }
 
 
