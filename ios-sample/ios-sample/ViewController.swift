@@ -8,6 +8,8 @@
 
 import UIKit
 import RealmSwift
+import Firebase
+
 
 class ViewController: UIViewController {
 
@@ -33,8 +35,18 @@ class ViewController: UIViewController {
         let dogs = realm.objects(Dog.self)
         debugPrint(dogs[0].name)
         
+        InstanceID.instanceID().instanceID { (result, error) in
+          if let error = error {
+            print("Error fetching remote instance ID: \(error)")
+          } else if let result = result {
+            print("Remote instance ID token: \(result.token)")
+            "Remote InstanceID token: \(result.token)"
+          }
+        }
+
     }
 
+    
 
 }
 
