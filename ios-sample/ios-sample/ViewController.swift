@@ -9,6 +9,7 @@
 import UIKit
 import RealmSwift
 import Firebase
+import FirebaseFirestore
 
 
 class ViewController: UIViewController {
@@ -40,10 +41,34 @@ class ViewController: UIViewController {
             print("Error fetching remote instance ID: \(error)")
           } else if let result = result {
             print("Remote instance ID token: \(result.token)")
-            "Remote InstanceID token: \(result.token)"
           }
         }
+        
+        //firestoreの保存
+        var ref: DocumentReference? = nil
+        let db = Firestore.firestore()
+        ref = db.collection("users").addDocument(data: [
+            "first": "Ada",
+            "last": "Lovelace",
+            "born": 1815
+        ]) { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                print("Document added with ID: \(ref!.documentID)")
+            }
+        }
 
+        //firebaseのfirestoreのデータの取得
+        db.collection("users").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    print("取得データ" + "\(document.documentID) => \(document.data())")
+                }
+            }
+        }
     }
 
     
