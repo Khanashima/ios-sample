@@ -10,7 +10,10 @@ target 'ios-sample' do
   pod 'Firebase/Crashlytics'
   pod 'RealmSwift'
   pod 'Firebase/Messaging'
-
+  pod 'Firebase/Firestore'
+  # Optionally, include the Swift extensions if you're using Swift.
+  pod 'FirebaseFirestoreSwift'
+  
   target 'ios-sampleTests' do
     inherit! :search_paths
     # Pods for testing

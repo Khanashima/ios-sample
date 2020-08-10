@@ -11,6 +11,8 @@ import CoreData
 import Firebase
 import UserNotifications
 import FirebaseMessaging
+import FirebaseFirestore
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUserNotificationCenterDelegate {
@@ -37,6 +39,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         application.registerForRemoteNotifications()
         //Push通知の登録
         Messaging.messaging().delegate = self
+        //firebase firestoreの作成
+        let db = Firestore.firestore()
         return true
     }
 
